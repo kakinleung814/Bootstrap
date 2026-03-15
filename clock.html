@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .clock {
+            font-size: 2em;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div class="clock">
+        <div id="clock-hk">Hong Kong: <span id="time-hk"></span></div>
+        <div id="clock-tokyo">Tokyo: <span id="time-tokyo"></span></div>
+        <div id="clock-ny">New York: <span id="time-ny"></span></div>
+        <div id="clock-london">London: <span id="time-london"></span></div>
+    </div>
+    <script>
+        function updateClock() {
+            const options = { timeZone: '', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('time-hk').textContent = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Hong_Kong' }).format(new Date());
+            document.getElementById('time-tokyo').textContent = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Tokyo' }).format(new Date());
+            document.getElementById('time-ny').textContent = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'America/New_York' }).format(new Date());
+            document.getElementById('time-london').textContent = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Europe/London' }).format(new Date());
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
